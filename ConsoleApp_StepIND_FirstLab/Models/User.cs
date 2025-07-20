@@ -1,44 +1,27 @@
 ﻿namespace ConsoleApp_StepIND_FirstLab.Models
 {
-    class User
+    class User // ობიექტის შექმნა არ უნდა შეგვეძლოს
     {
-        private int _grade;
-
+        public uint Id { get; init; }
         public string Name { get; set; }
         public DateTime BirthDate { get; init; }
-        public int Grade
-        {
-            get
-            {
-                return _grade;
-            }
-            set
-            {
-                if (value < 0 || value > 100)
-                {
-                    Console.WriteLine("Grade must be between 0 and 100!");
-                }
-                else
-                {
-                    _grade = value;
-                }
-            }
-        }
+        public string Mail { get; set; }
+
 
         // constructor
-        //public User() { }
-        public User(string name, DateTime birthDate, int grade)
+        public User(uint id, string name, DateTime birthDate, string mail)
         {
-            Name = name;
-            BirthDate = birthDate;
-            Grade = grade;
+            this.Id = id;
+            this.Name = name;
+            this.BirthDate = birthDate;
+            this.Mail = mail;
         }
 
         public void Print()
         {
             Console.WriteLine($"Name: {Name}, " +
                 $"Birth Date: {BirthDate.ToShortDateString()}, " +
-                $"Grade: {Grade}");
+                $"Mail: {Mail}");
         }
     }
 }
