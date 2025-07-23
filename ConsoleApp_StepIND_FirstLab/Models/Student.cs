@@ -14,7 +14,7 @@
             {
                 if (value < 0 || value > 100)
                 {
-                    throw new ArgumentOutOfRangeException(Grade.ToString());
+                    throw new ArgumentOutOfRangeException(nameof(Grade));
                 }
                 else
                 {
@@ -36,10 +36,25 @@
             Major = major;
         }
 
-        public void PrintStudent()
+
+        public override void Print()
         {
             base.Print();
             Console.WriteLine($"Grade: {Grade}, Major: {Major}");
+        }
+
+        public override int VacationDays()
+        {
+            return 100;
+        }
+
+        public override string ToString()
+        {
+            return $"Student: {Name}, " +
+                   $"Grade: {Grade}, " +
+                   $"Major: {Major}, " +
+                   $"Birth Date: {BirthDate.ToShortDateString()}, " +
+                   $"Mail: {Mail}";
         }
     }
 }

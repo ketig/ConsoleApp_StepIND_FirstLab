@@ -1,23 +1,33 @@
-﻿// virtual
-// abstract
-Anime anime = new Anime("Naruto", 500, "Action");
-Anime anime1 = new Anime();
+﻿// Task
+// Card - abstract
+// Debit Card
+// Credit Card
 
-Console.WriteLine($"How many episodes of '{anime.Title}' have you watched?");
-string? input = Console.ReadLine();
+using ConsoleApp_StepIND_FirstLab.Models;
 
-if (int.TryParse(input, out int watchedEpisodes))
-{
-    anime.GetCurrentSeason(watchedEpisodes, out int season);
-    if (season == 0)
-    {
-        Console.WriteLine("You haven't started watching yet.");
-    }
-    else
-    {
-        Console.WriteLine($"You're currently on season {season} of {anime.Title}.");
-    }
-}
+Student student = new Student(1, "name", DateTime.Now, "mail", 100, "major");
+Console.WriteLine(student);
+student.Print();
+
+
+//Anime anime = new Anime("Naruto", 500, "Action");
+//Anime anime1 = new Anime();
+
+//Console.WriteLine($"How many episodes of '{anime.Title}' have you watched?");
+//string? input = Console.ReadLine();
+
+//if (int.TryParse(input, out int watchedEpisodes))
+//{
+//    anime.GetCurrentSeason(watchedEpisodes, out int season);
+//    if (season == 0)
+//    {
+//        Console.WriteLine("You haven't started watching yet.");
+//    }
+//    else
+//    {
+//        Console.WriteLine($"You're currently on season {season} of {anime.Title}.");
+//    }
+//}
 
 public class Anime : Show
 {
@@ -33,7 +43,7 @@ public class Anime : Show
     }
 
     public Anime(string title, int episodes, string genre)
-        : base(title)
+        : base(title, episodes, genre)
     {
     }
 
@@ -50,7 +60,7 @@ public class Anime : Show
     }
 }
 
-public class Show
+public abstract class Show
 {
     private int _episodes;
     public string Title { get; set; }

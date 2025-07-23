@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp_StepIND_FirstLab.Models
 {
-    class User // ობიექტის შექმნა არ უნდა შეგვეძლოს
+    abstract class User // ობიექტის შექმნა არ უნდა შეგვეძლოს
     {
         public uint Id { get; init; }
         public string Name { get; set; }
@@ -17,7 +17,10 @@
             this.Mail = mail;
         }
 
-        public void Print()
+        // ყველა derived class თავისი ლოგიკა უნდა ქონდეს
+        public abstract int VacationDays();
+
+        public virtual void Print()
         {
             Console.WriteLine($"Name: {Name}, " +
                 $"Birth Date: {BirthDate.ToShortDateString()}, " +
