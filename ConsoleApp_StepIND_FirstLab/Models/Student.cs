@@ -14,7 +14,7 @@
             {
                 if (value < 0 || value > 100)
                 {
-                    Console.WriteLine("Grade must be between 0 and 100!");
+                    throw new ArgumentOutOfRangeException(Grade.ToString());
                 }
                 else
                 {
