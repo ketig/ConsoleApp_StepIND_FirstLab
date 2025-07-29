@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp_StepIND_FirstLab
+﻿namespace ConsoleApp_StepIND_FirstLab.Models.Vehicle
 {
     internal interface IVehicle
     {

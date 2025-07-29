@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp_StepIND_FirstLab
+﻿namespace ConsoleApp_StepIND_FirstLab.Models.Vehicle
 {
     internal class Car : IVehicle, IComparable<Car>
     {
@@ -6,11 +6,11 @@
 
         public int CompareTo(Car? other)
         {
-            if (this.Speed < other.Speed)
+            if (Speed < other.Speed)
             {
                 return -1;
             }
-            else if (this.Speed > other.Speed)
+            else if (Speed > other.Speed)
             {
                 return 1;
             }

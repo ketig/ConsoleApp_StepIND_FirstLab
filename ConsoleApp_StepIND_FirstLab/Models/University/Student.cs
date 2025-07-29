@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp_StepIND_FirstLab.Models
+﻿namespace ConsoleApp_StepIND_FirstLab.Models.University
 {
     internal class Student : User
     {

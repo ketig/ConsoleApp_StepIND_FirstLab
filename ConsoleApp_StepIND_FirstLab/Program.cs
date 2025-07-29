@@ -1,38 +1,14 @@
 ﻿using ConsoleApp_StepIND_FirstLab;
 
-Car car1 = new Car { Speed = 100 };
-Car car2 = new Car { Speed = 150 };
+Song song = new Song();
+song.Name = "Song Name";
+song.Composer = "Composer Name";
+song.Rating = 4.5;
 
-car1.CompareTo(car2);
-
-//Base item = new Base();
-//item.Display();
-//Base item1 = new Derived();
-//item1.Display();
-//Base item2 = new Derived2();
-//item2.Display();
+Song song1 = new Song("name", "comp", 4.1);
 
 
-//class Base
-//{
-//    public virtual void Display()
-//    {
-//        Console.WriteLine("Base class display method.");
-//    }
-//}
+Song song2 = song + song1;
 
-//class Derived : Base
-//{
-//    public override void Display()
-//    {
-//        Console.WriteLine("Derived class display method.");
-//    }
-//}
 
-//class Derived2 : Base
-//{
-//    public new void Display()
-//    {
-//        Console.WriteLine("Derived2 class display method.");
-//    }
-//}
+string name = (string)song;
