@@ -29,7 +29,7 @@
             DateTime birthDate,
             string mail,
             int grade,
-            string major)
+            string major) // enum
             : base(id, name, birthDate, mail)
         {
             Grade = grade;
