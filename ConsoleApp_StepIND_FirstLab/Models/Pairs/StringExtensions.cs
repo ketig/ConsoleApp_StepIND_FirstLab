@@ -70,7 +70,7 @@ namespace ConsoleApp_StepIND_FirstLab.Models.Pairs
         /// <exception cref="ArgumentNullException"><see cref="text"/> is null.</exception> 
         public static bool ValidateBrackets(this string? text, BracketTypes bracketTypes)
         {
-            // "(())()[]"
+            // "(())()[]" - stack
             return false;
         }
     }
