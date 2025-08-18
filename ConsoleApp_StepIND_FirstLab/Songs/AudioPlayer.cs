@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace ConsoleApp_StepIND_FirstLab
+namespace ConsoleApp_StepIND_FirstLab.Songs
 {
     internal class AudioPlayer : IMediaPlayer, IEnumerable<Song>
     {
@@ -62,7 +62,7 @@ namespace ConsoleApp_StepIND_FirstLab
         public AudioPlayer(List<Song> playList)
         {
             _index = 0;
-            this._playList = playList;
+            _playList = playList;
         }
 
         public void AddSong(Song song)

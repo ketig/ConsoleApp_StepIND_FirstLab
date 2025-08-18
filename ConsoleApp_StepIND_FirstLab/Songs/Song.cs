@@ -1,6 +1,4 @@
-﻿using ConsoleApp_StepIND_FirstLab;
-
-namespace ConsoleApp_StepIND_FirstLab
+﻿namespace ConsoleApp_StepIND_FirstLab.Songs
 {
     internal class Song
     {
