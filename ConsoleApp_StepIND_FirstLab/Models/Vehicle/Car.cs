@@ -3,6 +3,7 @@
     internal class Car : IVehicle, IComparable<Car>
     {
         public uint Speed { get; set; }
+        public int CountryId { get; set; }
 
         public int CompareTo(Car? other)
         {
