@@ -203,6 +203,17 @@ namespace ConsoleApp_StepIND_FirstLab.LINQ
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine("=========================");
+        }
+
+        public static void Print<T>(IEnumerable<T> collection, string text)
+        {
+            Console.WriteLine(text);
+            foreach (var item in collection)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("=========================");
         }
     }
 }
