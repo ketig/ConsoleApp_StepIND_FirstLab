@@ -25,25 +25,25 @@ List<Book> books = new List<Book>
         };
 
 //გამოიტანეთ ყველა წიგნი რომელიც 2010 წელზე გვიან გამოიცა. 
-var recentBooks = books.Where(b => b.PublicationDate.Year > 2010);
+IEnumerable<Book> recentBooks = books.Where(b => b.PublicationDate.Year > 2010);
 Syntax.Print(recentBooks, "Books published after 2010:");
 
 //დაალაგეთ წიგნები ავტორის სახელის მიხედვით.
-var sortedByAuthor = books.OrderBy(b => b.Author);
+IOrderedEnumerable<Book> sortedByAuthor = books.OrderBy(b => b.Author);
 Syntax.Print(sortedByAuthor, "Books sorted by author:");
 
 //დაჯგუფეთ წიგნები გამოცემის წლის მიხედვით.
-var groupedByYear = books.GroupBy(b => b.PublicationDate.Year);
+IEnumerable<IGrouping<int, Book>> groupedByYear = books.GroupBy(b => b.PublicationDate.Year);
 Console.WriteLine("Books grouped by publication year:");
-foreach (var group in groupedByYear)
+foreach (IGrouping<int, Book> group in groupedByYear)
 {
     Console.WriteLine($"Year: {group.Key}");
-    foreach (var book in group)
+    foreach (Book book in group)
     {
         Console.WriteLine($"  {book}");
     }
 }
 
 //გამოიყენეთ Select რათა მხოლოდ სათაურები გამოიტანონ.
-var titles = books.Select(b => b.Title);
+IEnumerable<string> titles = books.Select(b => b.Title);
 Syntax.Print(titles, "Book titles:");
