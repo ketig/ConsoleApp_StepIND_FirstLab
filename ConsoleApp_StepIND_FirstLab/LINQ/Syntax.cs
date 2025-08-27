@@ -86,6 +86,117 @@ namespace ConsoleApp_StepIND_FirstLab.LINQ
             }
         }
 
+        public static void TestingJoin()
+        {
+            //შექმენი ორი სია: List<Person> და List<Order> 
+            //დაწერე query syntax გამოყენებით join, რომელიც დააბრუნებს ყველა ადამიანს თავისი შეკვეთით. 
+            //შედეგი: Name: Giorgi, Product: Laptop
+            List<Person> people = new List<Person>
+        {
+            new Person { Id = 1, Name = "Alice Johnson", PhoneNumber = "555-1001" },
+            new Person { Id = 2, Name = "Bob Smith", PhoneNumber = "555-1002" },
+            new Person { Id = 3, Name = "Charlie Brown", PhoneNumber = "555-1003" },
+            new Person { Id = 4, Name = "David Miller", PhoneNumber = "555-1004" },
+            new Person { Id = 5, Name = "Eve Davis", PhoneNumber = "555-1005" },
+            new Person { Id = 6, Name = "Frank Wilson", PhoneNumber = "555-1006" },
+            new Person { Id = 7, Name = "Grace Thompson", PhoneNumber = "555-1007" },
+            new Person { Id = 8, Name = "Hannah Taylor", PhoneNumber = "555-1008" },
+            new Person { Id = 9, Name = "Ian Clark", PhoneNumber = "555-1009" },
+            new Person { Id = 10, Name = "Jack White", PhoneNumber = "555-1010" },
+            new Person { Id = 11, Name = "Karen Lewis", PhoneNumber = "555-1011" },
+            new Person { Id = 12, Name = "Liam Hall", PhoneNumber = "555-1012" },
+            new Person { Id = 13, Name = "Mia Allen", PhoneNumber = "555-1013" },
+            new Person { Id = 14, Name = "Noah Young", PhoneNumber = "555-1014" },
+            new Person { Id = 15, Name = "Olivia King", PhoneNumber = "555-1015" },
+            new Person { Id = 16, Name = "Paul Scott", PhoneNumber = "555-1016" },
+            new Person { Id = 17, Name = "Quinn Green", PhoneNumber = "555-1017" },
+            new Person { Id = 18, Name = "Ryan Adams", PhoneNumber = "555-1018" },
+            new Person { Id = 19, Name = "Sophia Baker", PhoneNumber = "555-1019" },
+            new Person { Id = 20, Name = "Thomas Nelson", PhoneNumber = "555-1020" }
+        };
+
+            List<Product> products = new List<Product>
+        {
+            new Product { Id = 1, Name = "Laptop", Price = 1200.00 },
+            new Product { Id = 2, Name = "Smartphone", Price = 800.00 },
+            new Product { Id = 3, Name = "Tablet", Price = 400.00 },
+            new Product { Id = 4, Name = "Monitor", Price = 300.00 },
+            new Product { Id = 5, Name = "Keyboard", Price = 50.00 },
+            new Product { Id = 6, Name = "Mouse", Price = 25.00 },
+            new Product { Id = 7, Name = "Printer", Price = 150.00 },
+            new Product { Id = 8, Name = "Router", Price = 100.00 },
+            new Product { Id = 9, Name = "Webcam", Price = 75.00 },
+            new Product { Id = 10, Name = "Headphones", Price = 200.00 },
+            new Product { Id = 11, Name = "USB Drive", Price = 20.00 },
+            new Product { Id = 12, Name = "External HDD", Price = 100.00 },
+            new Product { Id = 13, Name = "SSD", Price = 150.00 },
+            new Product { Id = 14, Name = "Graphics Card", Price = 500.00 },
+            new Product { Id = 15, Name = "Power Bank", Price = 60.00 },
+            new Product { Id = 16, Name = "Charger", Price = 30.00 },
+            new Product { Id = 17, Name = "Smart Watch", Price = 250.00 },
+            new Product { Id = 18, Name = "Drone", Price = 1000.00 },
+            new Product { Id = 19, Name = "Camera", Price = 700.00 },
+            new Product { Id = 20, Name = "Tripod", Price = 80.00 },
+            new Product { Id = 21, Name = "Speaker", Price = 180.00 },
+            new Product { Id = 22, Name = "Microphone", Price = 120.00 },
+            new Product { Id = 23, Name = "Smart Glasses", Price = 1500.00 },
+            new Product { Id = 24, Name = "VR Headset", Price = 900.00 },
+            new Product { Id = 25, Name = "Gaming Console", Price = 500.00 }
+        };
+
+            List<Order> orders = new List<Order>
+        {
+            new Order { PersonId = 1, ProductId = 1 },
+            new Order { PersonId = 1, ProductId = 5 },
+            new Order { PersonId = 2, ProductId = 2 },
+            new Order { PersonId = 2, ProductId = 10 },
+            new Order { PersonId = 3, ProductId = 3 },
+            new Order { PersonId = 3, ProductId = 6 },
+            new Order { PersonId = 4, ProductId = 4 },
+            new Order { PersonId = 4, ProductId = 7 },
+            new Order { PersonId = 5, ProductId = 8 },
+            new Order { PersonId = 5, ProductId = 11 },
+            new Order { PersonId = 6, ProductId = 12 },
+            new Order { PersonId = 6, ProductId = 13 },
+            new Order { PersonId = 7, ProductId = 14 },
+            new Order { PersonId = 7, ProductId = 16 },
+            new Order { PersonId = 8, ProductId = 15 },
+            new Order { PersonId = 8, ProductId = 19 },
+            new Order { PersonId = 9, ProductId = 18 },
+            new Order { PersonId = 9, ProductId = 20 },
+            new Order { PersonId = 10, ProductId = 9 },
+            new Order { PersonId = 10, ProductId = 21 },
+            new Order { PersonId = 11, ProductId = 17 },
+            new Order { PersonId = 12, ProductId = 22 },
+            new Order { PersonId = 13, ProductId = 24 },
+            new Order { PersonId = 14, ProductId = 25 },
+            new Order { PersonId = 15, ProductId = 23 },
+            new Order { PersonId = 16, ProductId = 2 },
+            new Order { PersonId = 17, ProductId = 6 },
+            new Order { PersonId = 18, ProductId = 10 },
+            new Order { PersonId = 19, ProductId = 3 },
+            new Order { PersonId = 20, ProductId = 1 }
+        };
+
+            var allOrders = from order in orders
+                            join product in products on order.ProductId equals product.Id
+                            join person in people on order.PersonId equals person.Id
+                            select new
+                            {
+                                order.PersonId,
+                                order.ProductId,
+                                PersonName = person.Name,
+                                person.PhoneNumber,
+                                ProductName = product.Name,
+                                product.Price
+                            };
+
+            foreach (var item in allOrders)
+            {
+                Console.WriteLine($"{item.PersonName}\t{item.PhoneNumber}\t{item.ProductName}\t{item.Price}");
+            }
+        }
+
         public static void Print<T>(IEnumerable<T> collection)
         {
             foreach (var item in collection)
@@ -95,3 +206,56 @@ namespace ConsoleApp_StepIND_FirstLab.LINQ
         }
     }
 }
+
+//using ConsoleApp_StepIND_FirstLab.Models.Vehicle;
+
+//List<Country> countries = new List<Country>
+//{
+//    new Country(1, "Georgia", "Tbilisi", 3714000, "Asia"),
+//    new Country(2, "Germany", "Berlin", 83240000, "Europe"),
+//    new Country(3, "Japan", "Tokyo", 125700000, "Asia"),
+//    new Country(4, "Brazil", "Brasília", 215300000, "South America"),
+//    new Country(5,"Canada", "Ottawa", 38930000, "North America"),
+//    new Country(6,"Australia", "Canberra", 26000000, "Oceania"),
+//    new Country(7,"Kenya", "Nairobi", 53770000, "Africa"),
+//    new Country(8,"India", "New Delhi", 1408000000, "Asia"),
+//    new Country(9,"France", "Paris", 68000000, "Europe"),
+//    new Country(10,"Egypt", "Cairo", 109300000, "Africa")
+//};
+//List<Car> cars = new List<Car>
+//        {
+//            new Car { Speed = 120, CountryId = 1 },
+//            new Car { Speed = 150, CountryId = 2 },
+//            new Car { Speed = 180, CountryId = 3 },
+//            new Car { Speed = 200, CountryId = 4 },
+//            new Car { Speed = 90,  CountryId = 5 },
+//            new Car { Speed = 130, CountryId = 6 },
+//            new Car { Speed = 175, CountryId = 7 },
+//            new Car { Speed = 110, CountryId = 8 },
+//            new Car { Speed = 95,  CountryId = 9 },
+//            new Car { Speed = 220, CountryId = 10 },
+//            new Car { Speed = 160, CountryId = 11 },
+//            new Car { Speed = 145, CountryId = 10 },
+//            new Car { Speed = 170, CountryId = 3 },
+//            new Car { Speed = 80,  CountryId = 14 },
+//            new Car { Speed = 140, CountryId = 15 },
+//            new Car { Speed = 190, CountryId = 6 },
+//            new Car { Speed = 210, CountryId = 17 },
+//            new Car { Speed = 100, CountryId = 18 },
+//        };
+
+//// join the two lists
+//var joinedList =
+//    from car in cars
+//    join country in countries on car.CountryId equals country.CountryId
+//    select new
+//    {
+//        car.Speed,
+//        CountryName = country.Name,
+//        country.Capital,
+//    };
+
+//foreach (var item in joinedList)
+//{
+//    Console.WriteLine($"Speed: {item.Speed}, Country: {item.CountryName}, Capital: {item.Capital}");
+//}
