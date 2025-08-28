@@ -1,4 +1,14 @@
-﻿var birthDate = new DateTime(2000, 09, 2);
+﻿using System.Text.RegularExpressions;
+
+string email = "user@example.com";​
+Regex  regex = new Regex(@"\w+@\w+\.\w+");​
+
+var result = regex.IsMatch(email);​
+
+Console.WriteLine(result);
+
+
+var birthDate = new DateTime(2000, 09, 2);
 
 int age = GetAge(birthDate);
 Console.WriteLine(age);
