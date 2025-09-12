@@ -2,19 +2,19 @@
 
 namespace ConsoleApp_StepIND_FirstLab
 {
-    internal class HangmanGame
+    internal static class HangmanGame
     {
         private static List<string> words = new List<string>
         {
-            //"example",
-            //"hangman",
+            "example",
+            "hangman",
             "programming",
-            //"challenge",
-            //"development"
+            "challenge",
+            "development"
         };
         private static Random random = new Random();
 
-        public void Start(string str)
+        public static void Start()
         {
             int attemptsLeft = 10;
             char input;
