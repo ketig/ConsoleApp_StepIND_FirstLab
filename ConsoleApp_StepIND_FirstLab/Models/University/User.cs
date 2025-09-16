@@ -7,7 +7,6 @@
         public DateTime BirthDate { get; init; }
         public string Mail { get; set; }
 
-
         // constructor
         public User(uint id, string name, DateTime birthDate, string mail)
         {

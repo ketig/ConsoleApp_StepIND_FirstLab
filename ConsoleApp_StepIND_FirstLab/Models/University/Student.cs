@@ -1,9 +1,22 @@
 ﻿namespace ConsoleApp_StepIND_FirstLab.Models.University
 {
+    public enum Major
+    {
+        ComputerScience,
+        Mathematics,
+        Physics,
+        Chemistry,
+        Biology,
+        Engineering,
+        Economics,
+        Psychology,
+    }
+
     internal class Student : User
     {
         protected int _grade;
-        public string Major { get; set; }
+
+        public Major Major { get; set; }
         public int Grade
         {
             get
@@ -29,7 +42,7 @@
             DateTime birthDate,
             string mail,
             int grade,
-            string major) // enum
+            Major major)
             : base(id, name, birthDate, mail)
         {
             Grade = grade;
