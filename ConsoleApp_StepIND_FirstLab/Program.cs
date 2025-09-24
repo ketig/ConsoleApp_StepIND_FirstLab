@@ -1,7 +1,6 @@
-﻿// Github ??
-// File
-// Comments
+﻿using ConsoleApp_StepIND_FirstLab;
 
+HangmanGame.Start();
 Console.WriteLine();
 
 class Example

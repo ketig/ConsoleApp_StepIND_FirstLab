@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Headers;
-
-namespace ConsoleApp_StepIND_FirstLab
+﻿namespace ConsoleApp_StepIND_FirstLab
 {
     internal static class HangmanGame
     {
@@ -13,9 +11,60 @@ namespace ConsoleApp_StepIND_FirstLab
             "development"
         };
         private static Random random = new Random();
+        private static string fileDir = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.Parent?.Parent?.Parent?.FullName ?? string.Empty;
+
+        private static void LoadDefaultWords()
+        {
+            words = new List<string>
+            {
+                "example",
+                "hangman",
+                "programming",
+                "challenge",
+                "development"
+            };
+        }
+
+        private static void LoadWordsFromFile(string fileDir, string fileName = "words.txt")
+        {
+            string filePath = Path.Combine(fileDir, fileName);
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string[] fileWords = File.ReadAllLines(fileName);
+                    words = fileWords
+                        .Where(word => !string.IsNullOrWhiteSpace(word))
+                        .Select(word => word.Trim().ToLower())
+                        .ToList();
+
+                    if (words.Count == 0)
+                    {
+                        Console.WriteLine("Warning: No valid words found in file. Using default words.");
+                        LoadDefaultWords();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Loaded {words.Count} words from {fileName}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Warning: File '{fileName}' not found. Using default words.");
+                    LoadDefaultWords();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading file '{fileName}': {ex.Message}");
+                Console.WriteLine("Using default words.");
+                LoadDefaultWords();
+            }
+        }
 
         public static void Start()
         {
+            LoadWordsFromFile(fileDir);
             int attemptsLeft = 10;
             char input;
             List<char> usedLetters = new List<char>();
